@@ -1,6 +1,6 @@
 import React from "react";
 import Age from "./Age";
-// Extract the "Your age is " message into a new component called Age and render it within the Welcome component. Pass to the Age component the age prop that Welcome is receiving from the App component.
+// Modify the Welcome component so that the Age component is rendered only if the age prop is greater than 18.
 class Welcome extends React.Component {
   render() {
     const name = this.props.name;
@@ -8,7 +8,7 @@ class Welcome extends React.Component {
     return (
       <>
         <p>Welcome {name}!</p>
-        <Age age={this.props.age} />
+        {this.props.age > 18 && <Age age={this.props.age} />}
       </>
     );
   }
