@@ -3,16 +3,22 @@ import React from "react";
 
 class Counter extends React.Component {
   state = {
-    count: 0,
+    countWithoutCallback: 0,
+    countWithCallback: 0,
   };
 
-  //Correggere errore:
-  //   Warning: Can't call setState on a component that is not yet mounted. This is a no-op, but it might indicate a bug in your application. Instead, assign to `this.state` directly or define a `state = {};` class property with the desired state in the Counter component.
-
   componentDidMount() {
+    // Intervallo senza callback
+    setInterval(() => {
+      this.setState({
+        countWithoutCallback: this.state.countWithoutCallback + 1,
+      });
+    }, 1000);
+
+    // Intervallo con callback
     setInterval(() => {
       this.setState((prevState) => ({
-        count: this.state.count + 1,
+        countWithCallback: prevState.countWithCallback + 1,
       }));
     }, 1000);
   }
@@ -20,7 +26,8 @@ class Counter extends React.Component {
   render() {
     return (
       <div>
-        <h1>Count: {this.state.count}</h1>
+        <h1>Conteggio senza callback: {this.state.countWithoutCallback}</h1>
+        <h1>Conteggio con callback: {this.state.countWithCallback}</h1>
       </div>
     );
   }
