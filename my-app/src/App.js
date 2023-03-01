@@ -3,7 +3,7 @@ import Counter from "./Counter";
 function App() {
   return (
     <div>
-      <Counter />
+      <Counter initialVal={1} intervall={1000} amount={2} />
     </div>
   );
 }

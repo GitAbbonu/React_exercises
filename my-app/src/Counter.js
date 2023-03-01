@@ -1,9 +1,12 @@
 import React from "react";
-// Create a Counter class component with an internal state containing a count property, initialized to 0. The Counter component should render the count property within an h1 tag, and the count property should be incremented by 1 every second;
+// Modify the Counter component so that the initial value of the counter, the increment interval and the increment amount are passed as props to the component.
+
+// Props from App:
+//initialVal={1} intervall={1000} amount={2}
 
 class Counter extends React.Component {
   state = {
-    count: 0,
+    count: this.props.initialVal,
   };
 
   //Correggere errore:
@@ -11,9 +14,9 @@ class Counter extends React.Component {
   componentDidMount() {
     setInterval(() => {
       this.setState({
-        count: this.state.count + 1,
+        count: this.state.count + this.props.amount,
       });
-    }, 1000);
+    }, this.props.intervall);
   }
 
   render() {
