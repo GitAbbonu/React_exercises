@@ -13,9 +13,9 @@ class Counter extends React.Component {
   //   Warning: Can't call setState on a component that is not yet mounted. This is a no-op, but it might indicate a bug in your application. Instead, assign to `this.state` directly or define a `state = {};` class property with the desired state in the Counter component.
   componentDidMount() {
     setInterval(() => {
-      this.setState({
+      this.setState(() => ({
         count: this.state.count + this.props.amount,
-      });
+      }));
     }, this.props.intervall);
   }
 
