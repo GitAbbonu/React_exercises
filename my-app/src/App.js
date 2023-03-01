@@ -1,11 +1,9 @@
-import Hello from "./Hello";
-import Welcome from "./Welcome";
+import Counter from "./Counter";
 
 function App() {
   return (
     <div>
-      <Hello />
-      <Welcome name="John" age={19} />
+      <Counter />
     </div>
   );
 }
