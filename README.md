@@ -1,1 +1,1 @@
-# Modify the Welcome component so that the Age component is rendered only if the age prop is greater than 18.
+# Modify the Age component so that the "Your age is " message is rendered only if the age prop is greater than 18. Otherwise render the "You are very young!" message.
