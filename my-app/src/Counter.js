@@ -1,6 +1,6 @@
 import React from "react";
 import CounterDisplay from "./CounterDisplay";
-// Extract the h1 tag showing the count state variable into a new component called CounterDisplay and render it within the Counter component, passing it the count state variable as a prop.
+// Modify the Counter component so that the interval is initialized within the componentDidMount life cycle method instead of the constructor. Is the constructor still required? NOPE
 
 // Props from App:
 //initialVal={1} intervall={1000} amount={2}
