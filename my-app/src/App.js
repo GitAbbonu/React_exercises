@@ -1,14 +1,9 @@
-// import ClickCounter from "./ClickCounter";
-// import Counter from "./Counter";
-
-import ClickTracker from "./ClickTracker";
+import InteractiveWelcome from "./InteractiveWelcome";
 
 function App() {
   return (
     <div>
-      {/* <Counter initialVal={1} intervall={1000} amount={2} /> */}
-      {/* <ClickCounter /> */}
-      <ClickTracker />
+      <InteractiveWelcome />
     </div>
   );
 }
