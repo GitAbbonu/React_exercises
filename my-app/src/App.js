@@ -1,9 +1,11 @@
-import Counter from "./Counter";
+import ClickCounter from "./ClickCounter";
+// import Counter from "./Counter";
 
 function App() {
   return (
     <div>
-      <Counter initialVal={1} intervall={1000} amount={2} />
+      {/* <Counter initialVal={1} intervall={1000} amount={2} /> */}
+      <ClickCounter />
     </div>
   );
 }
