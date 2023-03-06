@@ -1,4 +1,4 @@
-// Create a Login component containing three inputs: a username input, a password input and a remember checkbox. All three inputs should be controlled components.
+// Add a "login" button to the Login component. This button should be disabled as long as the username and password inputs are empty. When clicked, the event handler attached to the button should call an onLogin function passed as a prop to the Login component, passing it the state.
 import React from "react";
 
 class Login extends React.Component {
@@ -6,17 +6,27 @@ class Login extends React.Component {
     username: "",
     password: "",
     accept: false,
+    disabled: true,
   };
 
-  submitHandler = (ev) => {
+  onLogin = (ev) => {
     ev.preventDefault();
-    console.log(this.state);
+
+    const data = {
+      username: this.state.username,
+      password: this.state.password,
+      accept: this.state.accept,
+    };
+
+    this.props.onLogin(data);
   };
 
   inputChangeHandler = (ev) => {
     const _name = ev.target.name;
     const _value = ev.target.value;
     const _cheched = ev.target.checked;
+
+    this.checkInput();
 
     if (_name === "accept") {
       this.setState((prevState) => {
@@ -29,9 +39,21 @@ class Login extends React.Component {
     }
   };
 
+  checkInput = () => {
+    if (this.state.username === "" || this.state.password === "") {
+      this.setState(() => {
+        return { disabled: true };
+      });
+    } else {
+      this.setState(() => {
+        return { disabled: false };
+      });
+    }
+  };
+
   render() {
     return (
-      <form onSubmit={this.submitHandler}>
+      <form onSubmit={this.onLogin}>
         <label>Username:</label>
         <input
           name={"username"}
@@ -53,7 +75,9 @@ class Login extends React.Component {
           onChange={this.inputChangeHandler}
           type={"checkbox"}
         />
-        <button type="submit">Add Client</button>
+        <button type="submit" disabled={this.state.disabled}>
+          Login
+        </button>
       </form>
     );
   }
