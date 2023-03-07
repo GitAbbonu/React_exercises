@@ -1,15 +1,16 @@
-// import Login from "./Login";
-import UncontrolledLogin from "./UncontrolledLogin";
+import { useState } from "react";
+import TodoList from "./TodoList";
 
 function App() {
-  const acceptLoginHandler = (data) => {
-    console.log(data);
+  const [items, setItems] = useState(["Aa", "Bb", "Cc", "Dd"]);
+
+  const addItemHandler = (newItem) => {
+    setItems([...items, newItem]);
   };
 
   return (
     <div>
-      {/* <Login onLogin={acceptLoginHandler} /> */}
-      <UncontrolledLogin />
+      <TodoList items={items} onAdd={addItemHandler} />
     </div>
   );
 }
