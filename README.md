@@ -1,1 +1,1 @@
-# Modify the TodoList component so that the input clears every time a Todo is added to the items array.
+# Modify the TodoList by adding a "reset" button that clears the items array when clicked.
