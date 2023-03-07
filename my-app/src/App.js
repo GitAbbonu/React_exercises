@@ -12,12 +12,18 @@ function App() {
     setItems([""]);
   };
 
+  const removeFromListHandler = (id) => {
+    items.splice(id, 1);
+    setItems([...items]);
+  };
+
   return (
     <div>
       <TodoList
         items={items}
         onAdd={addItemHandler}
         onResetList={resetListHandler}
+        removeFromList={removeFromListHandler}
       />
     </div>
   );
