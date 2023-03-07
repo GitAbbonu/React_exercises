@@ -1,1 +1,1 @@
-# Add a "reset" button to the Login component that clears the content of all three inputs when clicked.
+# Implement an UncontrolledLogin component that implements all the operations of the Login component, but does so using uncontrolled components.
