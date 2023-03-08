@@ -50,8 +50,14 @@ class Login extends React.Component {
       });
     }
   };
+  //Modify the Login component from Forms 03 so that the "login" button background color is "red" when the inputted password's length is shorter than 8 characters, green otherwise.
 
   render() {
+    const styleButton = {
+      backgroundColor: this.state.password.length > 8 ? "green" : "red",
+      color: "white",
+    };
+
     return (
       <form onSubmit={this.onLogin}>
         <label>Username:</label>
@@ -75,7 +81,11 @@ class Login extends React.Component {
           onChange={this.inputChangeHandler}
           type={"checkbox"}
         />
-        <button type="submit" disabled={this.state.disabled}>
+        <button
+          style={styleButton}
+          type="submit"
+          disabled={this.state.disabled}
+        >
           Login
         </button>
       </form>
