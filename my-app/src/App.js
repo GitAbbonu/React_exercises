@@ -1,5 +1,6 @@
 import { useState } from "react";
 import TodoList from "./TodoList";
+import Welcome from "./Welcome";
 
 function App() {
   const [items, setItems] = useState(["Aggiungi elementi alla lista"]);
@@ -19,6 +20,7 @@ function App() {
 
   return (
     <div>
+      <Welcome />
       <TodoList
         items={items}
         onAdd={addItemHandler}
