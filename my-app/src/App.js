@@ -9,7 +9,7 @@ function App() {
   return (
     <div>
       {/* <Login onLogin={acceptLoginHandler} /> */}
-      <UncontrolledLogin />
+      <UncontrolledLogin onLogin={acceptLoginHandler} />
     </div>
   );
 }

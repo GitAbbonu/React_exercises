@@ -3,33 +3,60 @@
 import React, { createRef } from "react";
 
 class UncontrolledLogin extends React.Component {
-  _usernameRef = createRef();
+  _formRef = createRef();
 
   formSubimitHandler = (ev) => {
     ev.preventDefault();
 
-    const username = ev.target.elements.username.value;
-    const password = ev.target.elements.password.value;
-    const check = ev.target.elements.check.checked;
+    const { username, password, check } = this._formRef.current.elements;
 
-    console.log(username, password, check);
+    if (username.value === "" || password.value === "") {
+      return false;
+    }
+
+    const data = {
+      username: username.value,
+      password: password.value,
+      check: check.checked,
+    };
+
+    this.props.onLogin(data);
   };
 
+  checkButtonDisabled = () => {
+    const { username, password, submit } = this._formRef.current.elements;
+
+    if (username.value !== "" && password.value !== "") {
+      submit.disabled = false;
+    } else {
+      submit.disabled = true;
+    }
+  };
   componentDidMount() {
-    this._usernameRef.current.focus();
+    this._formRef.current.elements.username.focus();
   }
 
   render() {
     return (
-      <form onSubmit={this.formSubimitHandler}>
+      <form ref={this._formRef} onSubmit={this.formSubimitHandler}>
         <button type="reset">Reset</button>
         <label>Username:</label>
-        <input ref={this._usernameRef} name="username" type={"text"} />
+        <input
+          name="username"
+          type={"text"}
+          onChange={this.checkButtonDisabled}
+        />
         <label>Password:</label>
-        <input name="password" type={"password"} />
+        <input
+          name="password"
+          type={"password"}
+          onChange={this.checkButtonDisabled}
+        />
         <label>Accept:</label>
         <input name="check" type={"checkbox"} />
-        <button type="submit">Login</button>
+        <button type="submit" name="submit" disabled={true}>
+          Login
+        </button>
       </form>
     );
   }
