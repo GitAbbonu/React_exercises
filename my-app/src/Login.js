@@ -14,19 +14,13 @@ class Login extends React.Component {
   };
 
   inputChangeHandler = (ev) => {
-    const _name = ev.target.name;
-    const _value = ev.target.value;
-    const _cheched = ev.target.checked;
+    const { name, type, value, checked } = ev.target;
 
-    if (_name === "accept") {
-      this.setState((prevState) => {
-        return { accept: _cheched };
-      });
-    } else {
-      this.setState(() => {
-        return { [_name]: _value };
-      });
-    }
+    const v = type === "checkbox" ? checked : value;
+
+    this.setState(() => {
+      return { [name]: v };
+    });
   };
 
   render() {
