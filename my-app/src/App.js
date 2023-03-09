@@ -1,4 +1,3 @@
-// import Login from "./Login";
 import UncontrolledLogin from "./UncontrolledLogin";
 
 function App() {
@@ -8,8 +7,7 @@ function App() {
 
   return (
     <div>
-      {/* <Login onLogin={acceptLoginHandler} /> */}
-      <UncontrolledLogin />
+      <UncontrolledLogin onLogin={acceptLoginHandler} />
     </div>
   );
 }

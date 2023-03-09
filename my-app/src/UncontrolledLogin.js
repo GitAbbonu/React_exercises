@@ -1,29 +1,55 @@
 // Implement an UncontrolledLogin component that implements all the operations of the Login component, but does so using uncontrolled components.
 
-import React from "react";
+import React, { createRef } from "react";
 
 class UncontrolledLogin extends React.Component {
-  formSubimitHandler = (ev) => {
+  _formRef = createRef();
+
+  submitHandler = (ev) => {
     ev.preventDefault();
 
-    const username = ev.target.elements.username.value;
-    const password = ev.target.elements.password.value;
-    const check = ev.target.elements.check.checked;
+    const { username, password, check } = this._formRef.current.elements;
 
-    console.log(username, password, check);
+    const data = {
+      username: username.value,
+      password: password.value,
+      check: check.checked,
+    };
+
+    this.props.onLogin(data);
+  };
+
+  checkDisabledButton = () => {
+    const { username, password, submit } = this._formRef.current.elements;
+
+    if (username.value !== "" && password.value !== "") {
+      submit.disabled = false;
+    } else {
+      submit.disabled = true;
+    }
   };
 
   render() {
     return (
-      <form onSubmit={this.formSubimitHandler}>
+      <form ref={this._formRef} onSubmit={this.submitHandler}>
         <button type="reset">Reset</button>
         <label>Username:</label>
-        <input name="username" type={"text"} />
+        <input
+          name="username"
+          type={"text"}
+          onChange={this.checkDisabledButton}
+        />
         <label>Password:</label>
-        <input name="password" type={"password"} />
+        <input
+          name="password"
+          type={"password"}
+          onChange={this.checkDisabledButton}
+        />
         <label>Accept:</label>
         <input name="check" type={"checkbox"} />
-        <button type="submit">Login</button>
+        <button type="submit" name="submit" disabled={true}>
+          Login
+        </button>
       </form>
     );
   }
