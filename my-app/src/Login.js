@@ -12,6 +12,10 @@ class Login extends React.Component {
   onLogin = (ev) => {
     ev.preventDefault();
 
+    if (this.state.username === "" || this.state.password === "") {
+      return false;
+    }
+
     const data = {
       username: this.state.username,
       password: this.state.password,
@@ -22,21 +26,14 @@ class Login extends React.Component {
   };
 
   inputChangeHandler = (ev) => {
-    const _name = ev.target.name;
-    const _value = ev.target.value;
-    const _cheched = ev.target.checked;
+    const { name, type, value, checked } = ev.target;
+    const val = type === "checkbox" ? checked : value;
+
+    this.setState(() => {
+      return { [name]: val };
+    });
 
     this.checkInput();
-
-    if (_name === "accept") {
-      this.setState((prevState) => {
-        return { accept: _cheched };
-      });
-    } else {
-      this.setState(() => {
-        return { [_name]: _value };
-      });
-    }
   };
 
   checkInput = () => {
@@ -51,7 +48,8 @@ class Login extends React.Component {
     }
   };
 
-  resetButtonHandler = () => {
+  resetButtonHandler = (ev) => {
+    ev.preventDefault();
     this.setState(() => {
       return {
         username: "",
