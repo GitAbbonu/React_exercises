@@ -1,13 +1,28 @@
-import Login from "./Login";
+import ToDoList from "./ToDoList";
+import WrapperList from "./WrapperList";
 
 function App() {
-  const acceptLoginHandler = (data) => {
-    console.log(data);
-  };
-
   return (
     <div>
-      <Login onLogin={acceptLoginHandler} />
+      <WrapperList
+        render={(
+          items,
+          addItemHandler,
+          resetListHandler,
+          removeFromListHandler,
+          printList
+        ) => {
+          return (
+            <ToDoList
+              items={items}
+              onAdd={addItemHandler}
+              onResetList={resetListHandler}
+              removeFromList={removeFromListHandler}
+              printList={printList}
+            />
+          );
+        }}
+      />
     </div>
   );
 }
