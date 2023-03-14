@@ -40,7 +40,7 @@ class Login extends React.Component {
     };
 
     return (
-      <Container>
+      <Container title={"Login Controlled"}>
         <form onSubmit={this.onLogin}>
           <label>Username:</label>
           <input
