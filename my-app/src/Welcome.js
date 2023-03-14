@@ -1,18 +1,15 @@
+// Rewrite the Welcome component to be a function component.
 import React from "react";
 import Age from "./Age";
 
-class Welcome extends React.Component {
-  render() {
-    const name = this.props.name;
+function Welcome({ name, age }) {
+  return (
+    <>
+      <p>Welcome {name}!</p>
 
-    return (
-      <>
-        <p>Welcome {name}!</p>
-
-        <Age age={this.props.age} />
-      </>
-    );
-  }
+      <Age age={age} />
+    </>
+  );
 }
 
 export default Welcome;
