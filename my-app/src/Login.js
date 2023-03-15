@@ -1,79 +1,59 @@
-// Add a "login" button to the Login component. This button should be disabled as long as the username and password inputs are empty. When clicked, the event handler attached to the button should call an onLogin function passed as a prop to the Login component, passing it the state.
-import React from "react";
+// Rewrite the Login component from Forms 03 as a function component, and use the useState hook to track the state of the username, password and remember inputs. Tip: you can use useState more than once.
+import React, { useState } from "react";
 
-class Login extends React.Component {
-  state = {
+function Login() {
+  const [data, setData] = useState({
     username: "",
     password: "",
     accept: false,
-    disabled: true,
-  };
+  });
 
-  onLogin = (ev) => {
+  const onLogin = (ev) => {
     ev.preventDefault();
-
-    const data = {
-      username: this.state.username,
-      password: this.state.password,
-      accept: this.state.accept,
-    };
 
     this.props.onLogin(data);
   };
 
-  inputChangeHandler = (ev) => {
+  const inputChangeHandler = (ev) => {
     const { name, type, value, checked } = ev.target;
     const v = type === "checkbox" ? checked : value;
 
-    this.checkInput();
-
-    this.setState(() => {
-      return { [name]: v };
+    setData((prevData) => {
+      return { ...prevData, [name]: v };
     });
   };
 
-  checkInput = () => {
-    if (this.state.username === "" || this.state.password === "") {
-      this.setState(() => {
-        return { disabled: true };
-      });
-    } else {
-      this.setState(() => {
-        return { disabled: false };
-      });
-    }
-  };
-
-  render() {
-    return (
-      <form onSubmit={this.onLogin}>
-        <label>Username:</label>
-        <input
-          name={"username"}
-          value={this.state.username}
-          onChange={this.inputChangeHandler}
-          type={"text"}
-        />
-        <label>Password:</label>
-        <input
-          name={"password"}
-          value={this.state.password}
-          onChange={this.inputChangeHandler}
-          type={"password"}
-        />
-        <label>Accept:</label>
-        <input
-          name={"accept"}
-          checked={this.state.accept}
-          onChange={this.inputChangeHandler}
-          type={"checkbox"}
-        />
-        <button type="submit" disabled={this.state.disabled}>
-          Login
-        </button>
-      </form>
-    );
-  }
+  return (
+    <form onSubmit={onLogin}>
+      <label>Username:</label>
+      <input
+        name={"username"}
+        value={data.username}
+        onChange={inputChangeHandler}
+        type={"text"}
+      />
+      <label>Password:</label>
+      <input
+        name={"password"}
+        value={data.password}
+        onChange={inputChangeHandler}
+        type={"password"}
+      />
+      <label>Accept:</label>
+      <input
+        name={"accept"}
+        checked={data.accept}
+        onChange={inputChangeHandler}
+        type={"checkbox"}
+      />
+      <button
+        type="submit"
+        disabled={data.username === "" || data.password === "" ? true : false}
+      >
+        Login
+      </button>
+    </form>
+  );
 }
 
 export default Login;
