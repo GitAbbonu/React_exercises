@@ -9,13 +9,17 @@ function DisplayLanguage() {
       TRAD: "la lingua è in: ",
     },
   };
+
+  //   Consume the LanguageContext within the DisplayLanguage component by using the context consumer, and show the selected language in an h1 tag.
   return (
     <div>
       <LanguageContext.Consumer>
         {(lan) => {
           return (
             <div>
-              {tradution[lan].TRAD} {lan}
+              <h1>
+                {tradution[lan].TRAD} {lan}
+              </h1>
             </div>
           );
         }}
