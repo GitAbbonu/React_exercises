@@ -1,26 +1,19 @@
-//Create a ClickCounter class component that increments a counter every time a user clicks on a button. Render both the current value of the counter and the button within the ClickCounter component.
+// Rewrite the ClickCounter  as a function component, and use the useState hook to track the state of the counter.
+import React, { useState } from "react";
 
-import React from "react";
+function ClickCounter() {
+  const [count, setCount] = useState(0);
 
-class ClickCounter extends React.Component {
-  state = {
-    count: 0,
+  const plusOne = () => {
+    setCount((c) => c + 1);
   };
 
-  plusOne = () => {
-    this.setState((prevState) => {
-      return { count: prevState.count + 1 };
-    });
-  };
-
-  render() {
-    return (
-      <div>
-        <h1>Count: {this.state.count}</h1>
-        <button onClick={this.plusOne}>+</button>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <h1>Count: {count}</h1>
+      <button onClick={plusOne}>+</button>
+    </div>
+  );
 }
 
 export default ClickCounter;

@@ -1,5 +1,4 @@
 import ClickCounter from "./ClickCounter";
-// import Counter from "./Counter";
 
 function App() {
   return (
