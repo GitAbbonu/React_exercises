@@ -1,24 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+// Add a side effect to the ClickCounter component from useState 01 that calls a onCounterChange function with the current value of the counter every time value of the counter changes. The function should be received as a prop.
 
-class ClickCounter extends React.Component {
-  state = {
-    count: 0,
+function ClickCounter({ onCounterChange }) {
+  const [count, setCount] = useState(0);
+
+  const plusOne = () => {
+    setCount((c) => c + 1);
   };
 
-  plusOne = () => {
-    this.setState((prevState) => {
-      return { count: prevState.count + 1 };
-    });
-  };
+  useEffect(() => {
+    onCounterChange(count);
+  }, [count]);
 
-  render() {
-    return (
-      <div>
-        <h1>Count: {this.state.count}</h1>
-        <button onClick={this.plusOne}>+</button>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <h1>Count: {count}</h1>
+      <button onClick={plusOne}>+</button>
+    </div>
+  );
 }
 
 export default ClickCounter;
