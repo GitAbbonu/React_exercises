@@ -27,7 +27,6 @@ function App() {
       <GithubUser list={list} />
 
       <Prova initV={10} />
-      <Prova initV={20} />
     </div>
   );
 }
