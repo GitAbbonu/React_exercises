@@ -1,24 +1,8 @@
 import React, { useEffect, useState } from "react";
+import useGitHubUser from "./useGitHubUser";
 
 function GithubUser({ list }) {
-  const [items, setItems] = useState(["Lista di nomi GitHub"]);
-
-  async function getGitUser(gitName) {
-    try {
-      const url = "https://api.github.com/users/" + gitName;
-
-      const fet = await fetch(url);
-      const json = await fet.json();
-
-      setItems([...items, json.name]);
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  function addToItems(list) {
-    list.map((el) => getGitUser(el));
-  }
+  const { items, addToItems } = useGitHubUser();
 
   useEffect(() => {
     addToItems(list);
