@@ -2,30 +2,28 @@ import React, { useState } from "react";
 import GithubUser from "./GithubUser";
 
 function App() {
+  const [list, setList] = useState([""]);
   const [user, setUser] = useState("");
-  const [search, setSearch] = useState(false);
-
-  const searchHandler = () => {
-    setSearch(true);
-  };
-  const resetHandler = () => {
-    setSearch(false);
-    setUser("");
-  };
 
   const inputChangeHandler = (ev) => {
     const { value } = ev.target;
-
     setUser(value);
+  };
+
+  const addToListHandler = () => {
+    if (user === "") {
+      return false;
+    }
+    setList([...list, user]);
+    setUser("");
   };
 
   return (
     <div>
       <input name="search" value={user} onChange={inputChangeHandler} />
-      <button onClick={searchHandler}>Search</button>
-      <button onClick={resetHandler}>Reset</button>
+      <button onClick={addToListHandler}>Search</button>
 
-      {search && <GithubUser username={user} />}
+      <GithubUser list={list} />
     </div>
   );
 }

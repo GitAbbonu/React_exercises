@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 
-// Create a GithubUser component that fetches the data of the username passed as a prop, and renders some of the data within a div tag. The API to query is https://api.github.com/users/${username}.
+// Create a GithubUserList component that maintains an array of usernames, showing a GithubUser component for each username entered. The usernames should be added to the array using an input field and a button.
 
-function GithubUser({ username }) {
-  const [user, setUser] = useState(null);
+function GithubUser({ list }) {
+  const [items, setItems] = useState(["Lista di nomi GitHub"]);
 
   async function getGitUser(gitName) {
     try {
@@ -12,18 +12,30 @@ function GithubUser({ username }) {
       const fet = await fetch(url);
       const json = await fet.json();
 
-      setUser(json);
+      setItems([...items, json.name]);
     } catch (err) {
       console.log(err);
     }
   }
 
-  useEffect(() => {
-    getGitUser(username);
-    console.log(user);
-  }, [username]);
+  function addToItems(list) {
+    list.map((el) => getGitUser(el));
+  }
 
-  return <div>{user && <h1>{user.name}</h1>}</div>;
+  useEffect(() => {
+    addToItems(list);
+    console.log(items);
+  }, [list]);
+
+  const printItems = items.map((el, id) => {
+    return <li key={id}>{el}</li>;
+  });
+
+  return (
+    <div>
+      <ul>{printItems}</ul>
+    </div>
+  );
 }
 
 export default GithubUser;
