@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 
-// Create a GithubUserList component that maintains an array of usernames, showing a GithubUser component for each username entered. The usernames should be added to the array using an input field and a button.
-
 function GithubUser({ list }) {
   const [items, setItems] = useState(["Lista di nomi GitHub"]);
 

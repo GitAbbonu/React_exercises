@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import GithubUser from "./GithubUser";
+import Prova from "./Prova";
 
 function App() {
   const [list, setList] = useState([""]);
@@ -24,6 +25,9 @@ function App() {
       <button onClick={addToListHandler}>Search</button>
 
       <GithubUser list={list} />
+
+      <Prova initV={10} />
+      <Prova initV={20} />
     </div>
   );
 }
