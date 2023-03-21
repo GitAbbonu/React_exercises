@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { LanguageContext } from "./LanguageContext";
 
 function DisplayLanguage() {
@@ -9,21 +10,22 @@ function DisplayLanguage() {
       TRAD: "la lingua è in: ",
     },
   };
+  //   Rewrite the DisplayLanguage component from Context 02 to be a function component, and access the LanguageContext through the useContext hook.
+  const lan = useContext(LanguageContext);
 
-  //   Consume the LanguageContext within the DisplayLanguage component by using the context consumer, and show the selected language in an h1 tag.
   return (
     <div>
-      <LanguageContext.Consumer>
+      {/* <LanguageContext.Consumer>
         {(lan) => {
           return (
-            <div>
-              <h1>
-                {tradution[lan].TRAD} {lan}
-              </h1>
-            </div>
+            <div> */}
+      <h1>
+        {tradution[lan].TRAD} {lan}
+      </h1>
+      {/* </div>
           );
         }}
-      </LanguageContext.Consumer>
+      </LanguageContext.Consumer> */}
     </div>
   );
 }
