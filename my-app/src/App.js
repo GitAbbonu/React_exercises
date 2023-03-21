@@ -1,33 +1,43 @@
-import React, { useState } from "react";
-import GithubUser from "./GithubUser";
-import Prova from "./Prova";
+import React from "react";
+import FilteredList from "./FilteredList";
+
+const objArray = [
+  {
+    id: 1,
+    nome: "Mario",
+    eta: 19,
+  },
+  {
+    id: 2,
+    nome: "Luigi",
+    eta: 16,
+  },
+  {
+    id: 3,
+    nome: "Pippo",
+    eta: 30,
+  },
+  {
+    id: 4,
+    nome: "Nome1",
+    eta: 17,
+  },
+  {
+    id: 5,
+    nome: "Nome2",
+    eta: 40,
+  },
+  {
+    id: 6,
+    nome: "Nome3",
+    eta: 5,
+  },
+];
 
 function App() {
-  const [list, setList] = useState([""]);
-  const [user, setUser] = useState("");
-
-  const inputChangeHandler = (ev) => {
-    const { value } = ev.target;
-    setUser(value);
-  };
-
-  const addToListHandler = () => {
-    if (user === "") {
-      return false;
-    }
-    setList([...list, user]);
-    setUser("");
-  };
-
   return (
     <div>
-      <input name="search" value={user} onChange={inputChangeHandler} />
-      <button onClick={addToListHandler}>Search</button>
-
-      <GithubUser list={list} />
-
-      <Prova initV={10} />
-      <Prova initV={20} />
+      <FilteredList objs={objArray} />
     </div>
   );
 }
