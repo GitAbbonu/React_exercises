@@ -1,43 +1,16 @@
 import React from "react";
-import FilteredList from "./FilteredList";
+import { Route, Routes } from "react-router-dom";
+import Welcome from "./Welcome";
 
-const objArray = [
-  {
-    id: 1,
-    nome: "Mario",
-    eta: 19,
-  },
-  {
-    id: 2,
-    nome: "Luigi",
-    eta: 16,
-  },
-  {
-    id: 3,
-    nome: "Pippo",
-    eta: 30,
-  },
-  {
-    id: 4,
-    nome: "Nome1",
-    eta: 17,
-  },
-  {
-    id: 5,
-    nome: "Nome2",
-    eta: 40,
-  },
-  {
-    id: 6,
-    nome: "Nome3",
-    eta: 5,
-  },
-];
+// Create an App component that wraps a Routes component and add a single Route to the / path that renders the Welcome component from Function Components 01, passing it a name prop. Render the App component within a BrowserRouter component.
 
 function App() {
   return (
     <div>
-      <FilteredList objs={objArray} />
+      <Routes>
+        <Route path="/" element={<Welcome />} />
+        <Route path="/:name" element={<Welcome />} />
+      </Routes>
     </div>
   );
 }
