@@ -1,9 +1,10 @@
 import { Link, Route, Routes } from "react-router-dom";
 import Counter from "./Counter";
-import ShowGithubUser from "./ShowGithubUser";
+import GithubUser from "./GithubUser";
+import GithubUserList from "./GithubUserList";
 import Welcome from "./Welcome";
 
-// Add a Not Found route that renders when a user navigates to a path that does not exist.
+// Add a Route to the users path that shows the GihubUserList component from useEffect 04. Modify it so that instead of showing the GithubUser component for each username entered, it shows a link to a nested route that shows the ShowGithubUser component. In doing so, remove the /users/:username route from the App component, and add a new nested route within the /users route.
 function App() {
   return (
     <div>
@@ -14,8 +15,10 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Welcome />} />
-          <Route path="/users" element={<ShowGithubUser />} />
-          <Route path="/users/:username" element={<ShowGithubUser />} />
+
+          <Route path="/users" element={<GithubUserList />}>
+            <Route path=":username" element={<GithubUser />} />
+          </Route>
           <Route path="/counter" element={<Counter />} />
           <Route
             path="*"

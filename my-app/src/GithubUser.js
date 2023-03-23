@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Outlet, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 function GithubUser() {
   const { username } = useParams();
 
-  console.log(username);
-
-  const [user, setUser] = useState(null);
+  const [item, setItem] = useState("");
 
   async function getGitUser(gitName) {
     try {
@@ -15,7 +13,7 @@ function GithubUser() {
       const fet = await fetch(url);
       const json = await fet.json();
 
-      setUser(json);
+      setItem(json);
     } catch (err) {
       console.log(err);
     }
@@ -23,13 +21,15 @@ function GithubUser() {
 
   useEffect(() => {
     getGitUser(username);
-    console.log(user);
   }, [username]);
+
+  // const printItems = items.map((el, id) => {
+  //   return <li key={id}>{el}</li>;
+  // });
 
   return (
     <div>
-      {user && <h1>{user.name}</h1>}
-      <Outlet />
+      <ul>{item.name}</ul>
     </div>
   );
 }
