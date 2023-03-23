@@ -3,7 +3,7 @@ import Counter from "./Counter";
 import GithubUser from "./GithubUser";
 import GithubUserList from "./GithubUserList";
 import Welcome from "./Welcome";
-// Add an index route to the GithubUserList route that shows the "Add a user and select it" message.
+
 function App() {
   return (
     <div>
@@ -19,6 +19,7 @@ function App() {
             <Route index element={<p>Add a user and select it</p>} />
             <Route path=":username" element={<GithubUser />} />
           </Route>
+
           <Route path="/counter" element={<Counter />} />
           <Route
             path="*"

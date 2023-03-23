@@ -1,35 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
+import useGithubUser from "./useGithubUser";
 
 function GithubUser() {
   const { username } = useParams();
 
-  const [item, setItem] = useState("");
+  const { data, error, isLoading, onFetchUser } = useGithubUser(username);
 
-  async function getGitUser(gitName) {
-    try {
-      const url = "https://api.github.com/users/" + gitName;
-
-      const fet = await fetch(url);
-      const json = await fet.json();
-
-      setItem(json);
-    } catch (err) {
-      console.log(err);
-    }
+  function getUserDataHandle() {
+    onFetchUser();
   }
-
-  useEffect(() => {
-    getGitUser(username);
-  }, [username]);
-
-  // const printItems = items.map((el, id) => {
-  //   return <li key={id}>{el}</li>;
-  // });
 
   return (
     <div>
-      <ul>{item.name}</ul>
+      <button onClick={getUserDataHandle}>Load user data</button>
+      {isLoading && <h3>Loading...</h3>}
+      {error && <h3>There has been an error</h3>}
+      {data && <h1>{data.name}</h1>}
     </div>
   );
 }
